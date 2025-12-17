@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "redhat.vscode-yamltwxs.cmake",
+    "ms-vscode.cmake-tools",
+    "josetr.cmake-language-support-vscode",
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack",
+    "ms-python.python",
+    "GitHub.vscode-github-actions"
+  ]
+}

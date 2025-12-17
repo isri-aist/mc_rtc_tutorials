@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  mc_rtc_tutorials:
+    image: mc_rtc_tutorials:humble
+    user: root
+    container_name: mc_rtc_tutorials
+    build:
+      context: ..
+      dockerfile: ./dockerfiles/Dockerfile
+    volumes:
+      - "../:/root/colcon_ws/src/"
+    privileged: True
+    stdin_open: True
+    command: bash
