@@ -1,7 +1,12 @@
 #include "MobileArmController.h"
 
+#include <mc_rbdyn/RobotLoader.h>
+
 MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
-: mc_control::MCController(rm, dt)
+    : mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module(
+                                        "env", "/usr/local/share/mc_dingo",
+                                        std::string("dingo"))},
+                               dt)
 {
   solver().addConstraintSet(contactConstraint);
   solver().addConstraintSet(kinematicsConstraint);
