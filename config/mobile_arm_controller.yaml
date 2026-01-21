@@ -1,0 +1,2 @@
+MainRobot: UR5e
+Enabled: [MobileArmController]

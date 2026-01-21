@@ -1,6 +1,5 @@
 import mc_control
 import mc_rbdyn
-import mc_rtc
 import math
 import mc_tasks
 import sva
