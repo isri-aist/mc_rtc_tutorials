@@ -3,7 +3,7 @@
 	url = https://github.com/isri-aist/mc_kinova
 [submodule "robots/mc_ur5e_description"]
 	path = robots/mc_ur5e_description
-	url = https://github.com/isri-aist/mc_ur5e_description
+	url = https://github.com/HACHIX-CORPORATION/mc_ur5e_description
 [submodule "robots/mc_ur5e"]
 	path = robots/mc_ur5e
 	url = https://github.com/isri-aist/mc_ur5e
