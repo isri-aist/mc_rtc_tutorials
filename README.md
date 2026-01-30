@@ -47,7 +47,7 @@ Remember to source the workspace after building:
 ### Running the dual_arm_controller C++ tutorial
 To run the dual_arm_controller tutorial, in one terminal, run the mc_rtc_ticker:
 ```bash
-mc_rtc_ticker -f config/dual_arm_controller.yaml
+mc_rtc_ticker -f ~/mc_rtc_ws/config/dual_arm_controller.yaml
 ```
 In another terminal, run RVIZ2 for visualization:
 ```bash
