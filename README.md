@@ -29,12 +29,12 @@ It is not recommended to run the tutorials without Docker since it is mixed betw
    ```bash
    git clone --recursive https://github.com/HACHIX-CORPORATION/mc_rtc_tutorials.git
    ```
-3. Build the following ROS2 packages in a colcon workspace (assuming you have ROS2 Humble installed, and sourced):
-    - `ur_description`
-    - `kortex_description`
-    - `mc_ur5e_description`
-    - `dingo_description`
-Remember to source the workspace after building:
+3. Build `robots_description` ROS2 packages in a colcon workspace (assuming you have ROS2 Humble installed, and sourced):
+   ```zsh
+   cd robots_description/
+   colcon build
+   ```
+   Remember to source the workspace after building:
    ```bash
    source install/setup.bash
    ```
