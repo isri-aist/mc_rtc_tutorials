@@ -10,10 +10,9 @@
 
 enum Phase
 {
-  APPROACH,
+  APPROACH = 0,
   HANDLE,
-  OPEN,
-  DONE
+  OPEN
 };
 
 struct MobileArmController_DLLAPI MobileArmController : public mc_control::MCController

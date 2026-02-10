@@ -1,2 +1,2 @@
-MainRobot: UR5eFloatingBase
+MainRobot: UR5e
 Enabled: [Python3#mobile_arm_controller.MobileArmController]
