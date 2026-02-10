@@ -1,2 +1,2 @@
-MainRobot: UR5e
+MainRobot: UR5eFloatingBase
 Enabled: [MobileArmController]

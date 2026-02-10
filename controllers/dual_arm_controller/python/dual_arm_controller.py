@@ -86,7 +86,7 @@ class DualArmController(mc_control.MCPythonController):
             self.qpsolver, 1, 5.0, 1000.0
         )
         self._kinovaKinematicsConstraint = mc_solver.KinematicsConstraint(
-            self.robots(), 1, self.qpsolver.dt()
+            self.robots(), 1, self.qpsolver.timeStep
         )
         self.qpsolver.addTask(self._kinovaPostureTask)
         self.qpsolver.addConstraintSet(self._kinovaKinematicsConstraint)
