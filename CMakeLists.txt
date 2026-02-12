@@ -16,13 +16,6 @@ else()
   set(ROS_VERSION $ENV{ROS_VERSION})
 endif()
 
-# Automatically add all installed robot descriptions
-set(DESCRIPTIONS_INSTALL_DIR "${CMAKE_CURRENT_LIST_DIR}/robots_description/install")
-if(EXISTS "${DESCRIPTIONS_INSTALL_DIR}")
-  list(APPEND CMAKE_PREFIX_PATH "${DESCRIPTIONS_INSTALL_DIR}")
-  message(STATUS "Added robot descriptions to CMAKE_PREFIX_PATH: ${DESCRIPTIONS_INSTALL_DIR}")
-endif()
-
-
 add_subdirectory(controllers)
 add_subdirectory(robots)
+
