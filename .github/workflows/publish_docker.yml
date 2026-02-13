@@ -27,7 +27,7 @@ jobs:
 
       - name: Tag image
         run: |
-          docker tag mc_rtc_tutorials ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]'):latest
+          docker tag mc_rtc_tutorials:humble ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]'):latest
       - name: Push image
         run: |
           docker push ghcr.io/${{ github.repository }}:latest
