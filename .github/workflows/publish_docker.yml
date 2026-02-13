@@ -23,11 +23,7 @@ jobs:
       - name: Build image using Docker Compose
         run: |
           cd dockerfiles
-          docker compose build 
-
-      - name: Tag image
-        run: |
-          docker tag mc_rtc_tutorials:humble ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest
+          docker build -t ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest .
       - name: Push image
         run: |
           docker push ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest
