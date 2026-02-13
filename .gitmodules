@@ -1,22 +1,22 @@
 [submodule "robots/mc_kinova"]
 	path = robots/mc_kinova
 	url = https://github.com/isri-aist/mc_kinova
-[submodule "robots/mc_ur5e_description"]
-	path = robots/mc_ur5e_description
+[submodule "robots_description/mc_ur5e_description"]
+	path = robots_description/mc_ur5e_description
 	url = https://github.com/HACHIX-CORPORATION/mc_ur5e_description
 [submodule "robots/mc_ur5e"]
 	path = robots/mc_ur5e
-	url = https://github.com/HACHIX-CORPORATION/mc_ur5e
-[submodule "robots/Universal_Robots_ROS2_Description"]
-	path = robots/Universal_Robots_ROS2_Description
+	url = https://github.com/isri-aist/mc_ur5e
+[submodule "robots_description/Universal_Robots_ROS2_Description"]
+	path = robots_description/Universal_Robots_ROS2_Description
 	url = https://github.com/UniversalRobots/Universal_Robots_ROS2_Description
 	branch = humble
-[submodule "robots/ros2_kortex"]
-	path = robots/ros2_kortex
+[submodule "robots_description/ros2_kortex"]
+	path = robots_description/ros2_kortex
 	url = https://github.com/Kinovarobotics/ros2_kortex
-[submodule "robots/dingo"]
-	path = robots/dingo
-	url = https://github.com/HosseinSheikhi/dingo
+[submodule "robots_description/dingo"]
+	path = robots_description/dingo
+	url = https://github.com/HACHIX-CORPORATION/dingo
 [submodule "robots/mc_dingo"]
 	path = robots/mc_dingo
 	url = https://github.com/HACHIX-CORPORATION/mc_dingo

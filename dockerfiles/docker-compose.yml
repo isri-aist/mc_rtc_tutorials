@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  mc_rtc_tutorials:
+    image: mc_rtc_tutorials:humble
+    user: root
+    container_name: mc_rtc_tutorials
+    environment:
+      DISPLAY: $DISPLAY
+    build:
+      context: ..
+      dockerfile: ./dockerfiles/Dockerfile
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Use the command 'echo $XAUTHORITY' to find exact path
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority
+
+      - "../config:/root/config/"
+      - "../controllers:/root/mc_rtc_ws/"
+      - "../robots_description/:/root/colcon_ws/src/"
+      - "../robots/:/root/mc_robots/"
+    privileged: True
+    stdin_open: True
+    command: bash

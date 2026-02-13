@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 cmake_policy(SET CMP0048 NEW)
 
-option(DISABLE_ROS OFF)
+option(DISABLE_ROS "Compile all dependencies in ROS-free environment" OFF)
 set(PROJECT_VERSION 0.0.0)
 project(mc_rtc_tutorial VERSION ${PROJECT_VERSION})
 
@@ -16,8 +16,6 @@ else()
   set(ROS_VERSION $ENV{ROS_VERSION})
 endif()
 
-add_subdirectory(robots/mc_dingo)
-add_subdirectory(robots/mc_kinova)
-add_subdirectory(robots/mc_ur5e)
-add_subdirectory(dual_arm_controller)
-add_subdirectory(mobile_arm_controller)
+add_subdirectory(controllers)
+add_subdirectory(robots)
+
