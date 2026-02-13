@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: PrepareReg Names
+        run: |
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -27,7 +30,9 @@ jobs:
 
       - name: Tag image
         run: |
-          docker tag mc_rtc_tutorials ghcr.io/${{ github.repository }}:latest
+          docker tag mc_rtc_tutorials ghcr.io/$IMAGE_REPOSITORY:latest
+        env:
+          IMAGE_REPOSITORY: $(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
 
       - name: Push image
         run: |
