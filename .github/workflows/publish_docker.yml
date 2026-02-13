@@ -22,8 +22,7 @@ jobs:
 
       - name: Build image using Docker Compose
         run: |
-          cd dockerfiles
-          docker build -t ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest .
+          docker build -t ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest -f ./dockerfiles/Dockerfile .
       - name: Push image
         run: |
           docker push ghcr.io/thomasduvinage/${{ github.event.repository.name }}:latest
