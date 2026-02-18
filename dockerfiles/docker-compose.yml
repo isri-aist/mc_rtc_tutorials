@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   mc_rtc_tutorials:
-    image: ghcr.io/thomasduvinage/mc_rtc_tutorials:latest
+    image: ghcr.io/isri-aist/mc_rtc_tutorials:latest
     user: root
     container_name: mc_rtc_tutorials
     environment:
