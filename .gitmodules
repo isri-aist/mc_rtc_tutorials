@@ -3,7 +3,7 @@
 	url = https://github.com/isri-aist/mc_kinova
 [submodule "robots_description/mc_ur5e_description"]
 	path = robots_description/mc_ur5e_description
-	url = https://github.com/HACHIX-CORPORATION/mc_ur5e_description
+	url = https://github.com/isri-aist/mc_ur5e_description
 [submodule "robots/mc_ur5e"]
 	path = robots/mc_ur5e
 	url = https://github.com/isri-aist/mc_ur5e
@@ -17,7 +17,7 @@
 	branch = humble
 [submodule "robots_description/dingo"]
 	path = robots_description/dingo
-	url = https://github.com/HACHIX-CORPORATION/dingo
+	url = https://github.com/isri-aist/dingo
 [submodule "robots/mc_dingo"]
 	path = robots/mc_dingo
-	url = https://github.com/HACHIX-CORPORATION/mc_dingo
+	url = https://github.com/isri-aist/mc_dingo
