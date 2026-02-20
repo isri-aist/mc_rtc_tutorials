@@ -55,7 +55,7 @@ bool MobileArmController::run() {
   else if (phase_ == HANDLE // && handTask_->eval().norm() < 0.1 &&
       /** handTask_->speed().norm() < 1e-4 */) 
   {
-    addContact({"ur5e", "door", "Wrist", "Handle"});
+    addContact({"ur5e", "door", "Tool", "Handle"});
     solver().removeTask(handTask_);
     postureTask->reset();
     doorPostureTask_->target({{"handle", {-1.0}}});
@@ -68,7 +68,7 @@ bool MobileArmController::run() {
     phase_ = DONE;
   } 
   else if (phase_ == DONE /* && doorPostureTask_->eval().norm() < 0.01 */) {    // TODO: Setting up the controller logic          
-    removeContact({"ur5e", "door", "Wrist", "Handle"});
+    removeContact({"ur5e", "door", "Tool", "Handle"});
     dingoEndEffectorTask_->reset();
     solver().addTask(dingoEndEffectorTask_);
     solver().addTask(postureTask.get());
@@ -86,7 +86,7 @@ void MobileArmController::reset(const mc_control::ControllerResetData &reset_dat
       sva::PTransformd(sva::RotZ(M_PI), Eigen::Vector3d(2.0, 1.0, 0)));
 
   handTask_ =
-      std::make_shared<mc_tasks::SurfaceTransformTask>("Wrist", robots(), 0);
+      std::make_shared<mc_tasks::SurfaceTransformTask>("Tool", robots(), 0);
   dingoEndEffectorTask_ =
       std::make_shared<mc_tasks::EndEffectorTask>("base_link", robots(),
       1);
