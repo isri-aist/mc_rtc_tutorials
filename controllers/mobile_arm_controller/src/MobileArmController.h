@@ -23,7 +23,7 @@ struct MobileArmController_DLLAPI MobileArmController : public mc_control::MCCon
 
   private:
     int count = 0;
-    Phase phase_ = APPROACH;                                                    // TODO: setting up the controller logic
+    Phase phase_ = APPROACH;
     std::shared_ptr<mc_tasks::SurfaceTransformTask> handTask_;
     std::shared_ptr<mc_tasks::EndEffectorTask> dingoEndEffectorTask_;
     std::shared_ptr<mc_solver::KinematicsConstraint> doorKinematics_;
