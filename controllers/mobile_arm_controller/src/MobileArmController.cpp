@@ -25,7 +25,7 @@ MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt,
   dof[3] = 0.0;
   dof[4] = 0.0;
   addContact({"dingo", "ground", "Base", "AllGround", friction, dof});
-  // addContact({"dingo", "UR5e", "Base", "Base"});                             // TODO: Robot index
+  addContact({"dingo", "ur5e", "Base", "Base"});                             // TODO: Robot index
 
 
   double iDist = 0.1;
