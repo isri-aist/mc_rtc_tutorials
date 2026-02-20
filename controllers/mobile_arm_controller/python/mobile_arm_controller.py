@@ -7,18 +7,18 @@ import mc_rbdyn
 import mc_solver
 import mc_control
 
-
 class ControllerPhase:
     APPROACH = 0
     HANDLE = 1
     OPEN = 2
     DONE = 3
 
-
 class MobileArmController(mc_control.MCPythonController):
     def __init__(self, rm, dt):
         self.qpsolver.addConstraintSet(self.contactConstraint)
         self.qpsolver.addConstraintSet(self.selfCollisionConstraint)
+        self.qpsolver.addTask(self.postureTask)
+
         dof = eigen.Vector6d.Zero()
         dof[0] = 1.0
         dof[1] = 1.0
@@ -27,17 +27,20 @@ class MobileArmController(mc_control.MCPythonController):
         self.addContact(
             mc_control.Contact("dingo", "ground", "Base", "AllGround", friction, dof)
         )
+        self.addContact(mc_control.Contact("dingo", "ur5e", "Base", "Base"))
+
         iDist, sDist, damping = 0.1, 0.05, 0.0
         self.addCollisions(
             "dingo",
             "door",
             [mc_rbdyn.Collision("*", "*", iDist, sDist, damping)],
         )
-        # self.addCollisions(
-        #     "ur5e",
-        #     "door",
-        #     [mc_rbdyn.Collision("*", "*", iDist, sDist, damping)],
-        # )
+        self.addCollisions(
+            "ur5e",
+            "door",
+            [mc_rbdyn.Collision("*", "*", iDist, sDist, damping)],
+        )
+
         self._phase = ControllerPhase.APPROACH
 
     def run_callback(self):
@@ -61,7 +64,7 @@ class MobileArmController(mc_control.MCPythonController):
             and self._handTask.eval().norm() < 0.1
             and self._handTask.speed().norm() < 1e-4
         ):
-            self.addContact(mc_control.Contact("ur5e", "door", "Wrist", "Handle"))
+            self.addContact(mc_control.Contact("ur5e", "door", "Tool", "Handle"))
             self.qpsolver.removeTask(self._handTask)
             self.postureTask.reset()
             self._doorPosture.target(
@@ -85,7 +88,7 @@ class MobileArmController(mc_control.MCPythonController):
             self._phase == ControllerPhase.DONE
             and self._doorPosture.eval().norm() < 0.01
         ):
-            self.removeContact(mc_control.Contact("ur5e", "door", "Wrist", "Handle"))
+            self.removeContact(mc_control.Contact("ur5e", "door", "Tool", "Handle"))
             self._dingoEndEffectorTask.reset()
             self.qpsolver.addTask(self._dingoEndEffectorTask)
             self.qpsolver.addTask(self.postureTask)
@@ -100,16 +103,15 @@ class MobileArmController(mc_control.MCPythonController):
             sva.PTransformd(sva.RotZ(0), eigen.Vector3d(0.0, 0.0, 0.5))
         )
         self.robots().robot(1).posW(
-            sva.PTransformd(sva.RotZ(0), eigen.Vector3d(0.0, 0.0, 0))
+            sva.PTransformd(sva.RotZ(0), eigen.Vector3d(-0.25, 0.0, 0))
         )
         self.robots().robot(2).posW(
             sva.PTransformd(sva.RotZ(math.pi), eigen.Vector3d(2.0, 1.0, 0))
         )
-        self.addContact(mc_control.Contact("dingo", "ur5e", "Base", "Base"))
         self._doorPosture = mc_tasks.PostureTask(self.qpsolver, 2, 1.0, 1.0)
         self.qpsolver.addTask(self._doorPosture)
         self._handTask = mc_tasks.SurfaceTransformTask(
-            "Wrist", self.robots(), 0, 5.0, 1000.0
+            "Tool", self.robots(), 0, 5.0, 1000.0
         )
         self._dingoEndEffectorTask = mc_tasks.EndEffectorTask(
             "base_link", self.robots(), 1, 1.0, 1000.0
@@ -128,13 +130,7 @@ class MobileArmController(mc_control.MCPythonController):
 
     @staticmethod
     def create(robot, dt):
-        dingo = mc_rbdyn.get_robot_module(
-            "object", "/usr/local/share/mc_dingo", "dingo"
-        )
-        door = mc_rbdyn.get_robot_module(
-            "env", "/usr/share/mc_rtc/mc_int_obj_description", "door"
-        )
-        ground = mc_rbdyn.get_robot_module(
-            "env", "/usr/share/mc_rtc/mc_env_description/", "ground"
-        )
+        dingo = mc_rbdyn.get_robot_module("dingo")
+        door = mc_rbdyn.get_robot_module("env/door")
+        ground = mc_rbdyn.get_robot_module("env/ground")
         return MobileArmController([robot, dingo, door, ground], dt)

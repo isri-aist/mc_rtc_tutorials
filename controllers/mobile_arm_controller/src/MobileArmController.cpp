@@ -63,7 +63,7 @@ bool MobileArmController::run()
   else if (phase_ == OPEN && doorPostureTask_->eval().norm() < 0.01) 
   {
     solver().removeTask(dingoEndEffectorTask_);
-    doorPostureTask_->target({{"door", {1.57}}});
+    doorPostureTask_->target({{"door", {M_PI / 2}}});
     phase_ = DONE;
   } 
   else if (phase_ == DONE && doorPostureTask_->eval().norm() < 0.01) 
