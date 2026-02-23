@@ -42,42 +42,33 @@ It is not recommended to run the tutorials without Docker since it is mixed betw
     ```
 
 ## Running preinstalled controller
-### dual_arm_controller C++ tutorial
-To run the dual_arm_controller tutorial, in one terminal, run the mc_rtc_ticker:
+In one terminal, run RVIZ2 for visualization:
+```bash
+ros2 launch mc_rtc_ticker display.launch
+```
+
+In a separate terminal, use mc_rtc_ticker to run the tutorials.
+### dual_arm_controller 
+#### C++
 ```bash
 mc_rtc_ticker -f config/dual_arm_controller.yaml
 ```
-In another terminal, run RVIZ2 for visualization:
+#### Python
 ```bash
-ros2 launch mc_rtc_ticker display.launch
+PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/dual_arm_controller/python mc_rtc_ticker -f config/dual_arm_controller_python.yaml
 ```
-### dual_arm_controller Python tutorial
-To run the dual_arm_controller Python tutorial, in one terminal, run the mc_rtc_ticker:
-```bash
-PYTHONPATH=<path_to_mc_rtc_tutorials>/dual_arm_controller/python mc_rtc_ticker -f config/dual_arm_controller_python.yaml
-```
-In another terminal, run RVIZ2 for visualization:
-```bash
-ros2 launch mc_rtc_ticker display.launch
-```
-### mobile_arm_controller C++ tutorial
-To run the mobile_arm_controller tutorial, in one terminal, run the mc_rtc_ticker:
+If you are using docker: `PYTHONPATH=mc_rtc_ws/dual_arm_controller/python mc_rtc_ticker -f config/dual_arm_controller_python.yaml`
+
+### mobile_arm_controller
+#### C++
 ```bash
 mc_rtc_ticker -f config/mobile_arm_controller.yaml
 ```
-In another terminal, run RVIZ2 for visualization:
+#### Python
 ```bash
-ros2 launch mc_rtc_ticker display.launch
+PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/mobile_arm_controller/python mc_rtc_ticker -f config/mobile_arm_controller_python.yaml
 ```
-### mobile_arm_controller Python tutorial
-To run the mobile_arm_controller Python tutorial, in one terminal, run the mc_rtc_ticker:
-```bash
-PYTHONPATH=<path_to_mc_rtc_tutorials>/mobile_arm_controller/python mc_rtc_ticker -f config/mobile_arm_controller_python.yaml
-```
-In another terminal, run RVIZ2 for visualization:
-```bash
-ros2 launch mc_rtc_ticker display.launch
-```
+If you are using docker: `PYTHONPATH=mc_rtc_ws/mobile_arm_controller/python mc_rtc_ticker -f config/mobile_arm_controller_python.yaml`
 
 ## Adding controller
 You can add controllers of your own and build it easily.
