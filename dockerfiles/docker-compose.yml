@@ -2,15 +2,14 @@ version: '3.3'
 
 services:
   mc_rtc_tutorials:
-    image: ghcr.io/isri-aist/mc_rtc_tutorials:latest
+    image: mc_rtc_tutorials:latest
     user: root
     container_name: mc_rtc_tutorials
     environment:
       DISPLAY: $DISPLAY
-    # Uncomment if you can to build local image
-    # build:
-    #   context: ..
-    #   dockerfile: ./dockerfiles/Dockerfile
+    build:
+      context: ..
+      dockerfile: ./dockerfiles/Dockerfile
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       # Use the command 'echo $XAUTHORITY' to find exact path
