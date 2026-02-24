@@ -1,5 +1,5 @@
 MainRobot: UR5e
-Enabled: Ur10Learning
+Enabled: UrXLearning
 Timestep: 0.001
 
 LogPolicy : threaded
