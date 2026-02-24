@@ -7,3 +7,4 @@ add_subdirectory(mobile_arm_controller)
 
 # list new controller here
 # add_subdirectory(<your_controller>)
+add_subdirectory(urx_learning)
