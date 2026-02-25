@@ -5,4 +5,4 @@ project(mc_rtc_tutorial_robots_interface)
 add_subdirectory(mc_rtde)
 
 # list new controller here
-# add_subdirectory(<your_controller>)
+# add_subdirectory(<your_interface>)
