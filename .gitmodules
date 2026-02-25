@@ -21,9 +21,6 @@
 [submodule "robots/mc_dingo"]
 	path = robots/mc_dingo
 	url = https://github.com/isri-aist/mc_dingo
-[submodule "controllers/urx_learning"]
-	path = controllers/urx_learning
-	url = https://github.com/phamthekhang632/urx_learning.git
 [submodule "robots_interface/mc_rtde"]
 	path = robots_interface/mc_rtde
 	url = https://github.com/isri-aist/mc_rtde
