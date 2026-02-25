@@ -21,3 +21,6 @@
 [submodule "robots/mc_dingo"]
 	path = robots/mc_dingo
 	url = https://github.com/isri-aist/mc_dingo
+[submodule "robots_interface/mc_rtde"]
+	path = robots_interface/mc_rtde
+	url = https://github.com/isri-aist/mc_rtde

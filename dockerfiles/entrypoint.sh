@@ -17,10 +17,16 @@ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 make install 
 echo "--- Compilation Complete ---"
 
-
 echo "--- Compiling controllers ---"
 mkdir -p /root/mc_rtc_ws/build
 cd /root/mc_rtc_ws/build
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+make install 
+echo "--- Compilation Complete ---"
+
+echo "--- Compiling mc_interface ---"
+mkdir -p /root/mc_interface/build
+cd /root/mc_interface/build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 make install 
 echo "--- Compilation Complete ---"
