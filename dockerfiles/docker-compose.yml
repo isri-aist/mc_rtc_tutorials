@@ -20,6 +20,7 @@ services:
       - "../robots_description/:/root/colcon_ws/src/"
       - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
       - "../robots/:/root/mc_robots/"
+      - "../robots_interface/:/root/mc_interface/"
     privileged: True
     stdin_open: True
     command: bash
