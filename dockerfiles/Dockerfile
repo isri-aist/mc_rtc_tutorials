@@ -22,11 +22,24 @@ RUN apt-get update && apt-get install -y \
     cmake \
     ros-humble-gazebo-ros-pkgs \
     ros-humble-hardware-interface \
-    && rm -rf /var/lib/apt/lists/*~
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies for robots_interface
+RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:sdurobotics/ur-rtde \
+    && apt-get update \
+    && apt-get install librtde librtde-dev
+
+WORKDIR /opt
+RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
+    cd ur_modern_driver && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make install
 
 COPY ./dockerfiles/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
 WORKDIR /root
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash"]
