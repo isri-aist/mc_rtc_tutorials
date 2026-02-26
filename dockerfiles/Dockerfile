@@ -1,6 +1,10 @@
 # Indicates docker image
 FROM osrf/ros:humble-desktop-full
 
+LABEL org.opencontainers.image.source=https://github.com/isri-aist/mc_rtc_tutorials
+LABEL org.opencontainers.image.description="mc_rtc_tutorial image"
+LABEL org.opencontainers.image.licenses=BSD
+
 # Configure environment
 ENV DISPLAY host.docker.internal:0.0
 
