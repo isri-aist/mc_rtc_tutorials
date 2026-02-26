@@ -3,7 +3,7 @@
 #include <mc_rbdyn/RobotLoader.h>
 
 DualArmController::DualArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
-: mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("kinova_default")}, dt)
+: mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("KinovaDefault")}, dt)
 {
   solver().addConstraintSet(contactConstraint);
   solver().addConstraintSet(kinematicsConstraint);
