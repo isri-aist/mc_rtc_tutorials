@@ -48,7 +48,7 @@ ros2 launch mc_rtc_ticker display.launch
 ```
 
 In a separate terminal, use mc_rtc_ticker to run the tutorials.
-### dual_arm_controller 
+### dual_arm_controller
 #### C++
 ```bash
 mc_rtc_ticker -f config/dual_arm_controller.yaml
