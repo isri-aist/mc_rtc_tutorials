@@ -36,9 +36,8 @@ private:
   ControllerState kinovaState_ = RETURN;
   std::shared_ptr<mc_tasks::PostureTask> kinovaPostureTask_;
   std::shared_ptr<mc_tasks::EndEffectorTask> urEndEffectorTask_;
-  std::shared_ptr<mc_solver::KinematicsConstraint> kinovaKinematics_;
-  std::shared_ptr<mc_solver::CollisionsConstraint> collisionConstraint_;
+  std::unique_ptr<mc_solver::KinematicsConstraint> kinovaKinematics_;
 
-  double iDist = 0.1;
-  double sDist = 0.05;
+  const double iDist = 0.1;
+  const double sDist = 0.05;
 };
