@@ -51,24 +51,24 @@ In a separate terminal, use mc_rtc_ticker to run the tutorials.
 ### dual_arm_controller
 #### C++
 ```bash
-mc_rtc_ticker -f config/dual_arm_controller.yaml
+mc_rtc_ticker -f ~/config/dual_arm_controller.yaml
 ```
 #### Python
 ```bash
-PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/dual_arm_controller/python mc_rtc_ticker -f config/dual_arm_controller_python.yaml
+PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/dual_arm_controller/python mc_rtc_ticker -f ~/config/dual_arm_controller_python.yaml
 ```
-If you are using docker: `PYTHONPATH=mc_rtc_ws/dual_arm_controller/python mc_rtc_ticker -f config/dual_arm_controller_python.yaml`
+If you are using docker: `PYTHONPATH=${HOME}/mc_rtc_ws/dual_arm_controller/python mc_rtc_ticker -f ~/config/dual_arm_controller_python.yaml`
 
 ### mobile_arm_controller
 #### C++
 ```bash
-mc_rtc_ticker -f config/mobile_arm_controller.yaml
+mc_rtc_ticker -f ~/config/mobile_arm_controller.yaml
 ```
 #### Python
 ```bash
-PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/mobile_arm_controller/python mc_rtc_ticker -f config/mobile_arm_controller_python.yaml
+PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/mobile_arm_controller/python mc_rtc_ticker -f ~/config/mobile_arm_controller_python.yaml
 ```
-If you are using docker: `PYTHONPATH=mc_rtc_ws/mobile_arm_controller/python mc_rtc_ticker -f config/mobile_arm_controller_python.yaml`
+If you are using docker: `PYTHONPATH=${HOME}/mc_rtc_ws/mobile_arm_controller/python mc_rtc_ticker -f ~/config/mobile_arm_controller_python.yaml`
 
 ## Adding controller
 You can add controllers of your own and build it easily.
