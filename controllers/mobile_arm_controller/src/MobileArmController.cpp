@@ -40,7 +40,7 @@ bool MobileArmController::run()
   else if(phase_ == APPROACH && dingoEndEffectorTask_->eval().norm() < 1e-5
           && dingoEndEffectorTask_->speed().norm() < 1e-5)
   {
-    solver().removeTask(postureTask.get());
+    solver().removeTask(postureTask);
     handTask_->reset();
     solver().addTask(handTask_);
     handTask_->target(sva::PTransformd(Eigen::Vector3d(0, 0, -0.05)) * robots().robot(2).surfacePose("Handle"));
@@ -50,7 +50,6 @@ bool MobileArmController::run()
   {
     addContact({"ur5e", "door", "Tool", "Handle"});
     solver().removeTask(handTask_);
-    postureTask->reset();
     doorPostureTask_->target({{"handle", {-1.0}}});
     phase_ = OPEN;
   }
@@ -63,9 +62,8 @@ bool MobileArmController::run()
   else if(phase_ == DONE && doorPostureTask_->eval().norm() < 0.01)
   {
     removeContact({"ur5e", "door", "Tool", "Handle"});
-    dingoEndEffectorTask_->reset();
     solver().addTask(dingoEndEffectorTask_);
-    solver().addTask(postureTask.get());
+    solver().addTask(postureTask);
   }
   return mc_control::MCController::run();
 }
@@ -78,11 +76,7 @@ void MobileArmController::reset(const mc_control::ControllerResetData & reset_da
   robots().robot(2).posW(sva::PTransformd(sva::RotZ(M_PI), Eigen::Vector3d(2.0, 1.0, 0)));
 
   handTask_ = std::make_shared<mc_tasks::SurfaceTransformTask>("Tool", robots(), 0);
-  dingoEndEffectorTask_ = std::make_shared<mc_tasks::EndEffectorTask>("base_link", robots(), 1);
-  dingoEndEffectorTask_->positionTask->stiffness(1.0);
-  dingoEndEffectorTask_->positionTask->weight(1000.0);
-  dingoEndEffectorTask_->orientationTask->stiffness(1.0);
-  dingoEndEffectorTask_->orientationTask->weight(1000.0);
+  dingoEndEffectorTask_ = std::make_shared<mc_tasks::EndEffectorTask>("base_link", robots(), 1, 1.0, 1000);
 
   doorKinematics_ = std::make_shared<mc_solver::KinematicsConstraint>(robots(), 2, solver().dt());
   solver().addConstraintSet(*doorKinematics_);
@@ -90,7 +84,6 @@ void MobileArmController::reset(const mc_control::ControllerResetData & reset_da
   solver().addTask(doorPostureTask_);
 
   solver().addTask(dingoEndEffectorTask_);
-  solver().addTask(postureTask.get());
   postureTask->target({{"shoulder_lift_joint", {-M_PI / 2}}});
   dingoEndEffectorTask_->add_ef_pose({Eigen::Vector3d(1.5, 0.0, 0.0)});
 }
