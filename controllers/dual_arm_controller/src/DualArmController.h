@@ -38,8 +38,7 @@ private:
   std::shared_ptr<mc_tasks::EndEffectorTask> urEndEffectorTask_;
   std::shared_ptr<mc_solver::KinematicsConstraint> kinovaKinematics_;
   std::shared_ptr<mc_solver::CollisionsConstraint> collisionConstraint_;
-  std::vector<std::string> urJoints_ = {"shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",
-                                        "wrist_1_joint",      "wrist_2_joint",       "wrist_3_joint"};
+
   double iDist = 0.1;
   double sDist = 0.05;
 };
