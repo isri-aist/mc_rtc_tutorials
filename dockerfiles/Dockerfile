@@ -30,13 +30,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies for robots_interface
-RUN echo "deb https://ppa.launchpadcontent.net/sdurobotics/ur-rtde/ubuntu jammy main" \
-    | tee /etc/apt/sources.list.d/ur-rtde.list \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6DA6581D9B9716890E7597E59EAFFD5C588AF041 \
+RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:sdurobotics/ur-rtde \
     && apt-get update \
-    && apt-get install -y librtde librtde-dev \
-    && echo "/opt/ros/${ROS_DISTRO}/lib" >> /etc/ld.so.conf.d/ros.conf \
-    && ldconfig
+    && apt-get install librtde librtde-dev
+
 WORKDIR /opt
 RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
     cd ur_modern_driver && \
