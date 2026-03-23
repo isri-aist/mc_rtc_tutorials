@@ -7,6 +7,7 @@ LABEL org.opencontainers.image.licenses=BSD
 
 # Configure environment
 ENV DISPLAY host.docker.internal:0.0
+ENV LD_LIBRARY_PATH "/usr/local/lib"
 
 # Set default bash shell
 SHELL ["/bin/bash", "-c"]
