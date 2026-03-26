@@ -12,7 +12,7 @@ git clone --recursive https://github.com/isri-aist/mc_rtc_tutorials.git
 ```
 ### With docker (recommended)
 To easily set up the environment for running the tutorials, you can use Docker. Follow these steps:
-1. Install [Docker Desktop](https://docs.docker.com/get-started/get-docker/) (or [Docker Engine](https://docs.docker.com/engine/install/)) and [Docker Compose](https://docs.docker.com/compose/install/) on your system if you haven't already.
+1. Install [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) on your system if you haven't already.
 2. Navigate to the `dockerfiles` directory of cloned repository and build, run the Docker container using Docker Compose:
    ```bash
    cd mc_rtc_tutorials/dockerfiles
