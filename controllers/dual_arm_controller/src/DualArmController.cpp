@@ -3,15 +3,15 @@
 #include <mc_rbdyn/RobotLoader.h>
 
 DualArmController::DualArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
-: mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("KinovaDefault")}, dt)
+: mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("Kinova")}, dt)
 {
   solver().addConstraintSet(contactConstraint);
   solver().addConstraintSet(kinematicsConstraint);
   solver().addConstraintSet(selfCollisionConstraint);
 
-  robots().robot("kinova_default").posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.7, 0.5, 0)));
+  robots().robot("kinova").posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.7, 0.5, 0)));
 
-  addCollisions("ur5e", "kinova_default", {{"*", "*", iDist, sDist, 0}});
+  addCollisions("ur5e", "kinova", {{"*", "*", iDist, sDist, 0}});
 
   postureTask->stiffness(1);
   postureTask->weight(1);

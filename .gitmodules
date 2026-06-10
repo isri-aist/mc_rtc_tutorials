@@ -1,6 +1,6 @@
 [submodule "robots/mc_kinova"]
 	path = robots/mc_kinova
-	url = https://github.com/mathieu-celerier/mc_kinova.git
+	url = https://github.com/isri-aist/mc_kinova
 [submodule "robots_description/mc_ur5e_description"]
 	path = robots_description/mc_ur5e_description
 	url = https://github.com/isri-aist/mc_ur5e_description
