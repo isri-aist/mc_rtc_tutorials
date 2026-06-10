@@ -29,7 +29,7 @@ build_project() {
 
 build_project "mc_robots"    /root/mc_robots
 build_project "controllers"  /root/mc_rtc_ws
-build_project "mc_mujoco"    /root/mc_mujoco
+build_project "mc_mujoco"    /root/mc_mujoco_description
 build_project "mc_interface"  /root/mc_interface
 
 # Source ROS in shell configs

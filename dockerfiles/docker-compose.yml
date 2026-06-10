@@ -21,6 +21,7 @@ services:
       - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
       - "../robots/:/root/mc_robots/"
       - "../robots_interface/:/root/mc_interface/"
+      - "../mujoco_description/:/root/mc_mujoco_description/"
     privileged: true
     stdin_open: true
     tty: true

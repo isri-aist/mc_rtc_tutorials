@@ -9,6 +9,8 @@ DualArmController::DualArmController(mc_rbdyn::RobotModulePtr rm, double dt, con
   solver().addConstraintSet(kinematicsConstraint);
   solver().addConstraintSet(selfCollisionConstraint);
 
+  robots().robot("kinova").posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.7, 0.5, 0)));
+
   addCollisions("ur5e", "kinova", {{"*", "*", iDist, sDist, 0}});
 
   postureTask->stiffness(1);
@@ -83,8 +85,6 @@ void DualArmController::reset(const mc_control::ControllerResetData & reset_data
 
   kinovaKinematics_ = std::make_unique<mc_solver::KinematicsConstraint>(robots(), 1, solver().dt());
   solver().addConstraintSet(kinovaKinematics_);
-
-  robots().robot(1).posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.7, 0.5, 0)));
 }
 
 CONTROLLER_CONSTRUCTOR("DualArmController", DualArmController)

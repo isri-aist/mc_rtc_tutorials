@@ -22,12 +22,19 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/mc-rtc/head/setup.deb.sh' | bash
     apt install -y ros-${ROS_DISTRO}-mc-rtc-plugin ros-${ROS_DISTRO}-mc-rtc-tools && \
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && \
     echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null && \
-    apt-get update && apt-get install -y \
-    kitware-archive-keyring \
-    cmake \
-    ros-humble-gazebo-ros-pkgs \
-    ros-humble-hardware-interface \
+    apt-get update && apt-get install -y kitware-archive-keyring cmake ros-humble-gazebo-ros-pkgs ros-humble-hardware-interface \
     && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies for mc_mujoco
+WORKDIR /opt
+RUN apt-get update && apt-get install -y libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglew-dev && \
+    source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    git clone --recursive https://github.com/rohanpsingh/mc_mujoco.git && \
+    cd mc_mujoco && \
+    mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+    make && \
+    make install
 
 # Install dependencies for robots_interface
 WORKDIR /opt
