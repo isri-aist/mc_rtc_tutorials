@@ -31,10 +31,19 @@ RUN apt-get update && apt-get install -y \
 
 # Install dependencies for robots_interface
 RUN apt-get update \
-    && apt-get install -y software-properties-common \
-    && add-apt-repository ppa:sdurobotics/ur-rtde \
-    && apt-get update \
-    && apt-get install librtde librtde-dev
+    && apt-get install -y software-properties-common
+
+# If ppa:sdurobotics/ur-rtde is not available, consider building from source
+# RUN add-apt-repository ppa:sdurobotics/ur-rtde \
+#     && apt-get update \
+#     && apt-get install -y librtde librtde-dev
+WORKDIR /opt
+RUN git clone https://gitlab.com/sdurobotics/ur_rtde.git && \
+    cd ur_rtde && \
+    mkdir -p build && cd build && \
+    cmake -DPYTHON_BINDINGS:BOOL=OFF .. && \
+    make && \
+    sudo make install
 
 WORKDIR /opt
 RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
