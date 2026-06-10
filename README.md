@@ -5,6 +5,8 @@ This repository contains various tutorials for [mc_rtc](https://jrl.cnrs.fr/mc_r
 - **dual_arm_controller**: This tutorial demonstrates how to implement a dual-arm controller using C++ and Python. It showcases the control of two robotic arms working together to perform tasks.
 - **mobile_arm_controller**: This tutorial focuses on controlling a mobile manipulator robot using C++ and Python. It illustrates how to manage both the mobility and manipulation capabilities of the robot.
 
+Mujoco description for UR5e and Kinova robots are also provided to run controller with [mc_mujoco](https://github.com/rohanpsingh/mc_mujoco), a MuJoCo interface for mc_rtc.
+
 ## Installation
 Clone this repository to your local machine:
 ```bash
@@ -41,7 +43,8 @@ It is not recommended to run the tutorials without Docker since it is mixed betw
     make && make install
     ```
 
-## Running preinstalled controller
+## mc_rtc controller
+
 In one terminal, run RVIZ2 for visualization:
 ```bash
 ros2 launch mc_rtc_ticker display.launch
@@ -70,7 +73,7 @@ PYTHONPATH=<path_to_mc_rtc_tutorials>/controllers/mobile_arm_controller/python m
 ```
 If you are using docker: `PYTHONPATH=${HOME}/mc_rtc_ws/mobile_arm_controller/python mc_rtc_ticker -f ~/config/mobile_arm_controller_python.yaml`
 
-## Adding controller
+### Adding controller
 You can add controllers of your own and build it easily.
 
 Put your new controller inside `controllers` directory. If you have never work with `mc_rtc` before, you can find several tutorials to get started [here](https://jrl.cnrs.fr/mc_rtc/tutorials.html).
@@ -92,3 +95,20 @@ cmake ..
 make
 sudo make install
 ```
+
+## mc_mujoco
+
+With the provided mc_mujoco descriptions, you can run `dual_arm_controller` with mc_mujoco
+```sh
+mc_mujoco -sf ~/config/dual_arm_controller.yaml
+```
+
+You can add other controllers for UR5e and Kinova and simulate them with mc_mujoco using the same command.
+
+```sh
+mc_mujoco -sf <path_to_config_file>
+```
+
+## Note
+
+For both `mc_rtc_ticker` and `mc_mujoco`, you can run them with flag `-h` or `--help` to see all available options.
