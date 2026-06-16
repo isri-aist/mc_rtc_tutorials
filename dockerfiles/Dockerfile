@@ -33,24 +33,33 @@ RUN apt-get update && apt-get install -y libxrandr-dev libxinerama-dev libxcurso
     cd mc_mujoco && \
     mkdir build && cd build && \
     cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    make && \
+    make -j$(nproc) && \
     make install
 
 # Install dependencies for robots_interface
+RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+# If ppa:sdurobotics/ur-rtde is not available, consider building from source
+# RUN add-apt-repository ppa:sdurobotics/ur-rtde \
+#     && apt-get update \
+#     && apt-get install -y librtde librtde-dev
 WORKDIR /opt
-RUN apt-get update && apt-get install -y software-properties-common \
-    && rm -rf /var/lib/apt/lists/* && \
-    git clone https://gitlab.com/sdurobotics/ur_rtde.git && \
+RUN git clone https://gitlab.com/sdurobotics/ur_rtde.git && \
     cd ur_rtde && \
     mkdir -p build && cd build && \
     cmake -DPYTHON_BINDINGS:BOOL=OFF .. && \
-    make && make install
+    make -j$(nproc) && \
+    sudo make install
 
 WORKDIR /opt
 RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
     cd ur_modern_driver && \
     mkdir build && cd build && \
-    cmake .. && make install
+    cmake .. && \
+    make -j$(nproc) && \
+    make install
 
 COPY ./dockerfiles/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
