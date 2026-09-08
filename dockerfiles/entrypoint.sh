@@ -9,6 +9,9 @@ colcon build
 if [[ -f "/root/colcon_ws/install/setup.bash" ]]; then
     source "/root/colcon_ws/install/setup.bash"
 fi
+if [[ -f "/root/colcon_ws/install/setup.zsh" ]]; then
+    source "/root/colcon_ws/install/setup.zsh"
+fi
 echo "--- Colcon workspace build complete ---"
 
 build_project() {
@@ -40,13 +43,6 @@ fi
 if ! grep -q "^ros/humble/setup.zsh" ~/.zshrc 2>/dev/null; then
     echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
     echo "source /root/colcon_ws/install/setup.zsh" >> ~/.zshrc
-fi
-
-if ! grep -q "^RobotModulePaths" /usr/etc/mc_rtc.yaml; then
-    echo 'RobotModulePaths: [/usr/lib/mc_robots]' >> /usr/etc/mc_rtc.yaml
-fi
-if ! grep -q "^ControllerModulePaths" /usr/etc/mc_rtc.yaml; then
-    echo 'ControllerModulePaths: [/usr/lib/mc_controller]' >> /usr/etc/mc_rtc.yaml
 fi
 
 echo "--- COMPILATION COMPLETED ---"
