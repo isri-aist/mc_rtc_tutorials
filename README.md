@@ -90,10 +90,9 @@ docker exec -it mc_rtc_tutorials bash
 
 If you are not using Docker or do not want to exit your container. Navigate to the `build` directory and rebuild the project.
 ```bash
-cd build/
-cmake ..
-make
-sudo make install
+cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build --parallel -j$(nproc)
+cmake --install build
 ```
 
 ## mc_mujoco
@@ -109,6 +108,21 @@ You can add other controllers for UR5e and Kinova and simulate them with mc_mujo
 mc_mujoco -sf <path_to_config_file>
 ```
 
+## mc_rtc interface
+
+The project also provides a mc_rtc robot interface, [mc_rtde](https://github.com/isri-aist/mc_rtde). To run this, you can use the config file `rtde.yaml`
+
+```sh
+MCControlRtde -f ~/config/rtde.yaml
+```
+
+
 ## Note
 
-For both `mc_rtc_ticker` and `mc_mujoco`, you can run them with flag `-h` or `--help` to see all available options.
+For both `mc_rtc_ticker`, `mc_mujoco`, and `MCControlRtde`, you can run them with flag `-h` or `--help` to see all available options.
+
+This tutorial includes many submodules which are updated frequently. If you have any building issues. Consider update github submodules.
+
+```sh
+git submodule update --remote --recursive
+```
