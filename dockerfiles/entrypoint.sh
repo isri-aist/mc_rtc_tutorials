@@ -9,9 +9,6 @@ colcon build
 if [[ -f "/root/colcon_ws/install/setup.bash" ]]; then
     source "/root/colcon_ws/install/setup.bash"
 fi
-if [[ -f "/root/colcon_ws/install/setup.zsh" ]]; then
-    source "/root/colcon_ws/install/setup.zsh"
-fi
 echo "--- Colcon workspace build complete ---"
 
 build_project() {
