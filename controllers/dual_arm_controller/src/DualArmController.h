@@ -7,6 +7,8 @@
 
 #include "api.h"
 
+#include <memory>
+
 enum ControllerPhase
 {
   IDLE = 0,

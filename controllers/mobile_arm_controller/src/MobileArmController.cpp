@@ -2,9 +2,6 @@
 
 #include <mc_rbdyn/RobotLoader.h>
 #include <mc_tasks/TransformTask.h>
-#include <chrono>
-#include <memory>
-#include <thread>
 
 MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
 : mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("dingo"),
