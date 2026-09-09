@@ -81,7 +81,7 @@ class DualArmController(mc_control.MCPythonController):
 
     @staticmethod
     def create(robot, dt):
-        kinova = mc_rbdyn.get_robot_module("KinovaDefault")
+        kinova = mc_rbdyn.get_robot_module("Kinova")
         return DualArmController([robot, kinova], dt)
 
     def _run_kinova(self):
