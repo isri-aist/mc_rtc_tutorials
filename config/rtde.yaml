@@ -1,0 +1,14 @@
+MainRobot: UR5e # or UR10 / UR7e
+Enabled: Posture
+Timestep: 0.001
+
+# Set a LogPolicy suitable for real-time
+LogPolicy : threaded
+
+# Interface specific parameters (mc_rtde)
+RTDE:
+  ControlMode: Position # Can be: Position/Velocity/Torque
+
+  ur5e: # Name of the robot in the controller
+    ip: 150.18.227.205
+    driver: "ur_rtde" # Can be: "ur_rtde" (>=CB3) or "ur_modern_driver" (<=CB2). Default: ur_rtde
