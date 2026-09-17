@@ -6,8 +6,6 @@
 
 #include "api.h"
 
-#include <memory>
-
 enum Phase
 {
   APPROACH = 0,
