@@ -24,3 +24,9 @@
 [submodule "robots_interface/mc_rtde"]
 	path = robots_interface/mc_rtde
 	url = https://github.com/isri-aist/mc_rtde
+[submodule "mujoco_description/kinova_mj_description"]
+	path = mujoco_description/kinova_mj_description
+	url = https://github.com/mathieu-celerier/kinova_mj_description.git
+[submodule "mujoco_description/ur5e_mj_desription"]
+	path = mujoco_description/ur5e_mj_desription
+	url = https://github.com/isri-aist/ur5e_mj_description.git

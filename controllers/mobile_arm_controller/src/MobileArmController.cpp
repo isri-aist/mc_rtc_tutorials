@@ -2,9 +2,6 @@
 
 #include <mc_rbdyn/RobotLoader.h>
 #include <mc_tasks/TransformTask.h>
-#include <chrono>
-#include <memory>
-#include <thread>
 
 MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
 : mc_control::MCController({rm, mc_rbdyn::RobotLoader::get_robot_module("dingo"),
@@ -23,7 +20,6 @@ MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt,
   dof[3] = 0.0;
   dof[4] = 0.0;
   addContact({"dingo", "ground", "Base", "AllGround", friction, dof});
-  addContact({"dingo", "ur5e", "Base", "Base"});
 
   double iDist = 0.1;
   double sDist = 0.05;
@@ -68,9 +64,12 @@ bool MobileArmController::run()
 void MobileArmController::reset(const mc_control::ControllerResetData & reset_data)
 {
   mc_control::MCController::reset(reset_data);
+
   robots().robot(0).posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.0, 0.0, 0.5)));
   robots().robot(1).posW(sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(-0.25, 0.0, 0.0)));
   robots().robot(2).posW(sva::PTransformd(sva::RotZ(M_PI), Eigen::Vector3d(2.0, 1.0, 0)));
+
+  addContact({"dingo", "ur5e", "Base", "Base"});
 
   handTask_ = std::make_shared<mc_tasks::SurfaceTransformTask>("Tool", robots(), 0);
   dingoBaseTask_ = std::make_shared<mc_tasks::TransformTask>("base_link", robots(), 1, 2.0, 1000);
